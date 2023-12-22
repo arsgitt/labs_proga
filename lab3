@@ -1,0 +1,100 @@
+csharp
+using System;
+
+namespace Cars
+{
+    abstract class Car
+    {
+        public string Model { get; set; }
+        public int Year { get; set; }
+
+        public abstract void Drive();
+
+        public override string ToString()
+        {
+            return $"Model: {Model}, Year: {Year}";
+        }
+    }
+
+    class SportsCar : Car, IPrint
+    {
+        public SportsCar(string model, int year)
+        {
+            Model = model;
+            Year = year;
+        }
+
+        public override void Drive()
+        {
+            Console.WriteLine($"Driving a {Model} sports car!");
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Sports Car: {ToString()}");
+        }
+    }
+
+    class SUV : Car, IPrint
+    {
+        public SUV(string model, int year)
+        {
+            Model = model;
+            Year = year;
+        }
+
+        public override void Drive()
+        {
+            Console.WriteLine($"Driving a {Model} SUV!");
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"SUV: {ToString()}");
+        }
+    }
+
+    class Truck : Car, IPrint
+    {
+        public Truck(string model, int year)
+        {
+            Model = model;
+            Year = year;
+        }
+
+        public override void Drive()
+        {
+            Console.WriteLine($"Driving a {Model} truck!");
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Truck: {ToString()}");
+        }
+    }
+
+    interface IPrint
+    {
+        void Print();
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SportsCar sportsCar = new SportsCar("Porsche 911", 2021);
+            SUV suv = new SUV("Jeep Grand Cherokee", 2022);
+            Truck truck = new Truck("Ford F-150", 2020);
+
+            sportsCar.Drive();
+            suv.Drive();
+            truck.Drive();
+
+            sportsCar.Print();
+            suv.Print();
+            truck.Print();
+
+            Console.ReadKey();
+        }
+    }
+}
